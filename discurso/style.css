@@ -27,6 +27,7 @@ body {
     border-radius: 7px;
     margin: 10px auto;
     max-width: 600px;
+    position: relative;
 }
 
 .subtema-titulo {
@@ -111,3 +112,33 @@ li {
     right: 5%;
     line-height: 50%;
   }
+
+.add-subtema {
+    background-color: rgb(255, 255, 255);
+    width: 94%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: rgb(13, 0, 70) solid 3px;
+    border-radius: 7px;
+    margin: 10px auto;
+    max-width: 600px;
+    display: block;
+    color: black;
+}
+
+.delete {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    background-color: red;
+    color: white;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.blank {
+    height: 100px;
+}

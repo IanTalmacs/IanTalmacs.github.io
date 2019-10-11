@@ -6,32 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="script.js"></script>
 </head>
-<h1 class="tema">TEMA DO DISCURSO</h1>
+<h1 contenteditable="true" class="tema">TEMA DO DISCURSO</h1>
 <body>
-    <div class="subtema">
-        <h3 class="subtema-titulo">SUBTEMA</h3>
-        <ul class="pontos">
-            <li>Ponto 1</li>
-            <p>Exemplo de texto</p>
-            <li>Ponto 2</li>
-            <li class="bi">Mateus 24:14</li>
-            <p>E estas boas novas serão pregadas em toda a terra habitada</p>
-            <li>Ponto 4</li>
-        </ul>
-    </div>
 
-    <div class="subtema">
-        <h3 class="subtema-titulo">SUBTEMA</h3>
-        <ul class="pontos">
-            <li>Ponto 1</li>
-            <p>Exemplo de texto</p>
-            <li>Ponto 2</li>
-            <li class="bi">Mateus 24:14</li>
-            <p>E estas boas novas serão pregadas em toda a terra habitada</p>
-            <li>Ponto 4</li>
+    <div class="subtema" id="subtema">
+        <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+        <ul contenteditable="true" class="pontos">
+            <li contenteditable="true">Ponto 1</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true">Ponto 2</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true" class="bi">Mateus 24:14</li>
+            <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+            <li contenteditable="true">Ponto 4</li>
+            <p contenteditable="true">Exemplo de texto</p>
         </ul>
-    </div>  
+        <a class="delete" onclick="remove(this)">X</a>
+    </div> 
+
+    <a class="add-subtema" id="add-subtema" onclick="addSubtema()">ADICIONAR SUBTEMA</a>
+
+
+    <div class="blank"></div>
 
 
 <!--CRONOMETRO CRONOMETRO CRONOMETRO-->
