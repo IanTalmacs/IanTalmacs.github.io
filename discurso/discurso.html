@@ -7,7 +7,116 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
+<h1 class="tema">TEMA DO DISCURSO</h1>
 <body>
-    <h1>DISCURSO</h1>
+    <div class="subtema">
+        <h3 class="subtema-titulo">SUBTEMA</h3>
+        <ul class="pontos">
+            <li>Ponto 1</li>
+            <p>Exemplo de texto</p>
+            <li>Ponto 2</li>
+            <li class="bi">Mateus 24:14</li>
+            <p>E estas boas novas serão pregadas em toda a terra habitada</p>
+            <li>Ponto 4</li>
+        </ul>
+    </div>
+
+    <div class="subtema">
+        <h3 class="subtema-titulo">SUBTEMA</h3>
+        <ul class="pontos">
+            <li>Ponto 1</li>
+            <p>Exemplo de texto</p>
+            <li>Ponto 2</li>
+            <li class="bi">Mateus 24:14</li>
+            <p>E estas boas novas serão pregadas em toda a terra habitada</p>
+            <li>Ponto 4</li>
+        </ul>
+    </div>  
+
+
+<!--CRONOMETRO CRONOMETRO CRONOMETRO-->
+
+    <div id="stopwatch">
+        <div id="sw-time">00:00:00</div>
+        <input type="button" value="Reset" id="sw-rst" disabled/>
+        <input type="button" value="Start" id="sw-go" disabled/>
+    </div>
+
+    <script>
+    var sw = {
+        /* [INIT] */
+        etime : null, // holds HTML time display
+        erst : null, // holds HTML reset button
+        ego : null, // holds HTML start/stop button
+        timer : null, // timer object
+        now : 0, // current timer
+        init : function () {
+          // Get HTML elements
+          sw.etime = document.getElementById("sw-time");
+          sw.erst = document.getElementById("sw-rst");
+          sw.ego = document.getElementById("sw-go");
+      
+          // Attach listeners
+          sw.erst.addEventListener("click", sw.reset);
+          sw.erst.disabled = false;
+          sw.ego.addEventListener("click", sw.start);
+          sw.ego.disabled = false;
+        },
+      
+        /* [ACTIONS] */
+        tick : function () {
+        // tick() : update display if stopwatch running
+      
+          // Calculate hours, mins, seconds
+          sw.now++;
+          var remain = sw.now;
+          var hours = Math.floor(remain / 3600);
+          remain -= hours * 3600;
+          var mins = Math.floor(remain / 60);
+          remain -= mins * 60;
+          var secs = remain;
+      
+          // Update the display timer
+          if (hours<10) { hours = "0" + hours; }
+          if (mins<10) { mins = "0" + mins; }
+          if (secs<10) { secs = "0" + secs; }
+          sw.etime.innerHTML = hours + ":" + mins + ":" + secs;
+        },
+      
+        start : function () {
+        // start() : start the stopwatch
+      
+          sw.timer = setInterval(sw.tick, 1000);
+          sw.ego.value = "Stop";
+          sw.ego.removeEventListener("click", sw.start);
+          sw.ego.addEventListener("click", sw.stop);
+        },
+      
+        stop  : function () {
+        // stop() : stop the stopwatch
+      
+          clearInterval(sw.timer);
+          sw.timer = null;
+          sw.ego.value = "Start";
+          sw.ego.removeEventListener("click", sw.stop);
+          sw.ego.addEventListener("click", sw.start);
+        },
+      
+        reset : function () {
+        // reset() : reset the stopwatch
+      
+          // Stop if running
+          if (sw.timer != null) { sw.stop(); }
+      
+          // Reset time
+          sw.now = -1;
+          sw.tick();
+        }
+      };
+      
+      window.addEventListener("load", sw.init);
+      </script>
+
+
 </body>
 </html>
