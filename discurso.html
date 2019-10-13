@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-   <!-- <link rel="stylesheet" href="style.css" type="text/css">
-    <script src="script.js"></script> -->
 
-    <style>
-    
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Esboço</title>
+
+<style>
+
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -30,11 +29,13 @@ body {
     margin: 20px 0 0 0;
 }
 
-.subtema {
+#subtema1 {
+    display: block;
     background-color: rgb(255, 255, 255);
     width: 94%;
     box-sizing: border-box;
     padding: 10px;
+    padding-bottom: 30px;
     border: rgb(13, 0, 70) solid 3px;
     border-radius: 7px;
     margin: 10px auto;
@@ -42,9 +43,20 @@ body {
     position: relative;
 }
 
-#subtema {
+.subtema {
     display: none;
+    background-color: rgb(255, 255, 255);
+    width: 94%;
+    box-sizing: border-box;
+    padding: 10px;
+    padding-bottom: 30px;
+    border: rgb(13, 0, 70) solid 3px;
+    border-radius: 7px;
+    margin: 10px auto;
+    max-width: 600px;
+    position: relative;
 }
+
 
 .subtema-titulo {
     font-size: 1.35rem;
@@ -72,6 +84,55 @@ li {
     font-weight: bold;
     background-color:rgba(255, 251, 29, 0.4)
 }
+
+.add-subtema {
+    background-color: rgb(255, 255, 255);
+    width: 94%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: rgb(13, 0, 70) solid 3px;
+    border-radius: 7px;
+    margin: 10px auto;
+    max-width: 600px;
+    display: block;
+    color: black;
+    text-align: center;
+}
+
+
+.delete {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    background-color: red;
+    color: white;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.plus {
+    margin-top: 50px;
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    background-color: navy;
+    color: white;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 10px;
+
+}
+
+.blank {
+    height: 100px;
+}
+
+
 
 #stopwatch {
     box-sizing: border-box;
@@ -129,62 +190,24 @@ li {
     line-height: 50%;
   }
 
-.add-subtema {
-    background-color: rgb(255, 255, 255);
-    width: 94%;
-    box-sizing: border-box;
-    padding: 10px;
-    border: rgb(13, 0, 70) solid 3px;
-    border-radius: 7px;
-    margin: 10px auto;
-    max-width: 600px;
-    display: block;
-    color: black;
-    text-align: center;
-}
 
 
-.delete {
-    position: absolute;
-    right: 5px;
-    bottom: 5px;
-    background-color: red;
-    color: white;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1.2rem;
-}
-
-.blank {
-    height: 100px;
-}
-
-    </style>
+</style>
 
 
 </head>
-<h1 contenteditable="true" class="tema">TEMA DO DISCURSO</h1>
+
+<!--PUT onload="checkEdits()" as a property on <body> to save user edits-->
+
 <body>
 
-  <div class="subtema" id="subtema-original">
+  <div id="edit">
+
+    <h1 contenteditable="true" class="tema">TEMA DO DISCURSO</h1>
+
+    <div class="subtema" id="subtema1">
       <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
       <ul contenteditable="true" class="pontos">
-          <li contenteditable="true">Ponto 1</li>
-          <p contenteditable="true">Exemplo de texto</p>
-          <li contenteditable="true">Ponto 2</li>
-          <p contenteditable="true">Exemplo de texto</p>
-          <li contenteditable="true" class="bi">Mateus 24:14</li>
-          <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
-          <li contenteditable="true">Ponto 4</li>
-          <p contenteditable="true">Exemplo de texto</p>
-      </ul>
-  </div> 
-
-  <div class="subtema" id="subtema">
-    <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
-    <ul contenteditable="true" class="pontos">
         <li contenteditable="true">Ponto 1</li>
         <p contenteditable="true">Exemplo de texto</p>
         <li contenteditable="true">Ponto 2</li>
@@ -193,123 +216,277 @@ li {
         <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
         <li contenteditable="true">Ponto 4</li>
         <p contenteditable="true">Exemplo de texto</p>
-    </ul>
-    <a class="delete" id="delete-first" onclick="remove(this)">X</a>
-  </div> 
-
-    <a class="add-subtema" id="add-subtema" onclick="addSubtema()">ADICIONAR SUBTEMA</a>
-
-    <div class="blank"></div>
-
-
-<!--CRONOMETRO CRONOMETRO CRONOMETRO-->
-
-    <div id="stopwatch">
-        <div id="sw-time">00:00:00</div>
-        <input type="button" value="Reset" id="sw-rst" disabled/>
-        <input type="button" value="Start" id="sw-go" disabled/>
+        <a class="plus" id="2" onclick="addSubtema(this)">+</a>
+      </ul>
     </div>
 
-    <script>
-    var sw = {
-        /* [INIT] */
-        etime : null, // holds HTML time display
-        erst : null, // holds HTML reset button
-        ego : null, // holds HTML start/stop button
-        timer : null, // timer object
-        now : 0, // current timer
-        init : function () {
-          // Get HTML elements
-          sw.etime = document.getElementById("sw-time");
-          sw.erst = document.getElementById("sw-rst");
-          sw.ego = document.getElementById("sw-go");
-      
-          // Attach listeners
-          sw.erst.addEventListener("click", sw.reset);
-          sw.erst.disabled = false;
-          sw.ego.addEventListener("click", sw.start);
-          sw.ego.disabled = false;
-        },
-      
-        /* [ACTIONS] */
-        tick : function () {
-        // tick() : update display if stopwatch running
-      
-          // Calculate hours, mins, seconds
-          sw.now++;
-          var remain = sw.now;
-          var hours = Math.floor(remain / 3600);
-          remain -= hours * 3600;
-          var mins = Math.floor(remain / 60);
-          remain -= mins * 60;
-          var secs = remain;
-      
-          // Update the display timer
-          if (hours<10) { hours = "0" + hours; }
-          if (mins<10) { mins = "0" + mins; }
-          if (secs<10) { secs = "0" + secs; }
-          sw.etime.innerHTML = hours + ":" + mins + ":" + secs;
-        },
-      
-        start : function () {
-        // start() : start the stopwatch
-      
-          sw.timer = setInterval(sw.tick, 1000);
-          sw.ego.value = "Stop";
-          sw.ego.removeEventListener("click", sw.start);
-          sw.ego.addEventListener("click", sw.stop);
-        },
-      
-        stop  : function () {
-        // stop() : stop the stopwatch
-      
-          clearInterval(sw.timer);
-          sw.timer = null;
-          sw.ego.value = "Start";
-          sw.ego.removeEventListener("click", sw.stop);
-          sw.ego.addEventListener("click", sw.start);
-        },
-      
-        reset : function () {
-        // reset() : reset the stopwatch
-      
-          // Stop if running
-          if (sw.timer != null) { sw.stop(); }
-      
-          // Reset time
-          sw.now = -1;
-          sw.tick();
-        }
-      };
-      
-      window.addEventListener("load", sw.init);
+    <div class="subtema" id="subtema2">
+      <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+      <ul contenteditable="true" class="pontos">
+        <li contenteditable="true">Ponto 1</li>
+        <p contenteditable="true">Exemplo de texto</p>
+        <li contenteditable="true">Ponto 2</li>
+        <p contenteditable="true">Exemplo de texto</p>
+        <li contenteditable="true" class="bi">Mateus 24:14</li>
+        <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+        <li contenteditable="true">Ponto 4</li>
+        <p contenteditable="true">Exemplo de texto</p>
+      </ul>
+      <div class="plus" id="3" onclick="addSubtema(this)">+</div>
+      <a class="delete" id="delete-first" onclick="hide(this)">X</a>
+    </div>
+
+    <div class="subtema" id="subtema3">
+      <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+      <ul contenteditable="true" class="pontos">
+        <li contenteditable="true">Ponto 1</li>
+        <p contenteditable="true">Exemplo de texto</p>
+        <li contenteditable="true">Ponto 2</li>
+        <p contenteditable="true">Exemplo de texto</p>
+        <li contenteditable="true" class="bi">Mateus 24:14</li>
+        <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+        <li contenteditable="true">Ponto 4</li>
+        <p contenteditable="true">Exemplo de texto</p>
+      </ul>
+      <div class="plus" id="4" onclick="addSubtema(this)">+</div>
+      <a class="delete" id="delete-first" onclick="hide(this)">X</a>
+    </div>
+
+    <div class="subtema" id="subtema4">
+      <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+      <ul contenteditable="true" class="pontos">
+        <li contenteditable="true">Ponto 1</li>
+        <p contenteditable="true">Exemplo de texto</p>
+        <li contenteditable="true">Ponto 2</li>
+        <p contenteditable="true">Exemplo de texto</p>
+        <li contenteditable="true" class="bi">Mateus 24:14</li>
+        <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+        <li contenteditable="true">Ponto 4</li>
+        <p contenteditable="true">Exemplo de texto</p>
+      </ul>
+      <div class="plus" id="5" onclick="addSubtema(this)">+</div>
+      <a class="delete" id="delete-first" onclick="hide(this)">X</a>
+    </div>
+
+    <div class="subtema" id="subtema5">
+      <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+      <ul contenteditable="true" class="pontos">
+        <li contenteditable="true">Ponto 1</li>
+        <p contenteditable="true">Exemplo de texto</p>
+        <li contenteditable="true">Ponto 2</li>
+        <p contenteditable="true">Exemplo de texto</p>
+        <li contenteditable="true" class="bi">Mateus 24:14</li>
+        <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+        <li contenteditable="true">Ponto 4</li>
+        <p contenteditable="true">Exemplo de texto</p>
+      </ul>
+      <div class="plus" id="6" onclick="addSubtema(this)">+</div>
+      <a class="delete" id="delete-first" onclick="hide(this)">X</a>
+    </div>
+
+    <div class="subtema" id="subtema6">
+      <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+      <ul contenteditable="true" class="pontos">
+        <li contenteditable="true">Ponto 1</li>
+        <p contenteditable="true">Exemplo de texto</p>
+        <li contenteditable="true">Ponto 2</li>
+        <p contenteditable="true">Exemplo de texto</p>
+        <li contenteditable="true" class="bi">Mateus 24:14</li>
+        <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+        <li contenteditable="true">Ponto 4</li>
+        <p contenteditable="true">Exemplo de texto</p>
+      </ul>
+      <div class="plus" id="7" onclick="addSubtema(this)">+</div>
+      <a class="delete" id="delete-first" onclick="hide(this)">X</a>
+    </div>
+
+    <div class="subtema" id="subtema7">
+      <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+      <ul contenteditable="true" class="pontos">
+        <li contenteditable="true">Ponto 1</li>
+        <p contenteditable="true">Exemplo de texto</p>
+        <li contenteditable="true">Ponto 2</li>
+        <p contenteditable="true">Exemplo de texto</p>
+        <li contenteditable="true" class="bi">Mateus 24:14</li>
+        <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+        <li contenteditable="true">Ponto 4</li>
+        <p contenteditable="true">Exemplo de texto</p>
+      </ul>
+      <div class="plus" id="8" onclick="addSubtema(this)">+</div>
+      <a class="delete" id="delete-first" onclick="hide(this)">X</a>
+    </div>
+
+    <div class="subtema" id="subtema8">
+      <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+      <ul contenteditable="true" class="pontos">
+        <li contenteditable="true">Ponto 1</li>
+        <p contenteditable="true">Exemplo de texto</p>
+        <li contenteditable="true">Ponto 2</li>
+        <p contenteditable="true">Exemplo de texto</p>
+        <li contenteditable="true" class="bi">Mateus 24:14</li>
+        <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+        <li contenteditable="true">Ponto 4</li>
+        <p contenteditable="true">Exemplo de texto</p>
+      </ul>
+      <div class="plus" id="9" onclick="addSubtema(this)">+</div>
+      <a class="delete" id="delete-first" onclick="hide(this)">X</a>
+    </div>
+
+    <div class="subtema" id="subtema9">
+      <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+      <ul contenteditable="true" class="pontos">
+        <li contenteditable="true">Ponto 1</li>
+        <p contenteditable="true">Exemplo de texto</p>
+        <li contenteditable="true">Ponto 2</li>
+        <p contenteditable="true">Exemplo de texto</p>
+        <li contenteditable="true" class="bi">Mateus 24:14</li>
+        <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+        <li contenteditable="true">Ponto 4</li>
+        <p contenteditable="true">Exemplo de texto</p>
+      </ul>
+      <div class="plus" onclick="addSubtema(this)">+</div>
+      <a class="delete" id="delete-first" onclick="hide(this)">X</a>
+    </div>
 
 
-      
-      let i = 1
+  </div>
+
+  <!--<a class="add-subtema" id="add-subtema" onclick="addSubtema()">ADICIONAR SUBTEMA</a> -->
+
+  <a class="add-subtema" id="save-button" onclick="save()">SALVAR</a>
+
+  <div class="blank"></div>
+
+  <div id="stopwatch">
+    <div id="sw-time">00:00:00</div>
+    <input type="button" value="Reset" id="sw-rst" disabled />
+    <input type="button" value="Start" id="sw-go" disabled />
+  </div>
+
+<script>
 
 
-      function addSubtema() {
-          let x = document.getElementById('subtema');
-          let clone = x.cloneNode(true);
-          clone.id = 'subtema' + ++i;
-          x.parentNode.appendChild(clone);
-          let ref = document.getElementById('add-subtema');
-          ref.before(clone);
-          clone.style.display = 'block';
-          clone.children[0].innerHTML = clone.id;
-      }
+  let i = 2
+  let x
 
-      let x 
+  function addSubtema(elem) {
+    let x = document.getElementById(elem.id);
+    let y = document.getElementById('subtema' + x.id)
+    y.style.display = 'block';
+    if (y.style.display === 'block') {
+      x.style.display = 'none';
+    } else {
+      x.style.display === 'block';
+    }
+  }
+
+  function hide(elem) {
+    let x = document.getElementById(elem.parentNode.id);
+    x.style.display = 'none';
+    let y = x.id.substring(7);
+    document.getElementById(y).style.display = 'block'
+  }
+
+  function remove(elem) {
+    x = document.getElementById(elem.parentNode.id);
+    x.remove();
+  }
+
+  function save() {
+    const x = document.getElementById('edit');
+    const y = x.innerHTML;
+    localStorage.userEdits = y;
+  }
+
+  function checkEdits() {
+    if (localStorage.userEdits != null)
+      document.getElementById('edit').innerHTML = localStorage.userEdits;
+
+  }
 
 
-      function remove(elem) {
-          x = document.getElementById(elem.parentNode.id);
-          x.remove();
-}
 
-      </script>
+
+  var sw = {
+    /* [INIT] */
+    etime: null, // holds HTML time display
+    erst: null, // holds HTML reset button
+    ego: null, // holds HTML start/stop button
+    timer: null, // timer object
+    now: 0, // current timer
+    init: function () {
+      // Get HTML elements
+      sw.etime = document.getElementById("sw-time");
+      sw.erst = document.getElementById("sw-rst");
+      sw.ego = document.getElementById("sw-go");
+
+      // Attach listeners
+      sw.erst.addEventListener("click", sw.reset);
+      sw.erst.disabled = false;
+      sw.ego.addEventListener("click", sw.start);
+      sw.ego.disabled = false;
+    },
+
+    /* [ACTIONS] */
+    tick: function () {
+      // tick() : update display if stopwatch running
+
+      // Calculate hours, mins, seconds
+      sw.now++;
+      var remain = sw.now;
+      var hours = Math.floor(remain / 3600);
+      remain -= hours * 3600;
+      var mins = Math.floor(remain / 60);
+      remain -= mins * 60;
+      var secs = remain;
+
+      // Update the display timer
+      if (hours < 10) { hours = "0" + hours; }
+      if (mins < 10) { mins = "0" + mins; }
+      if (secs < 10) { secs = "0" + secs; }
+      sw.etime.innerHTML = hours + ":" + mins + ":" + secs;
+    },
+
+    start: function () {
+      // start() : start the stopwatch
+
+      sw.timer = setInterval(sw.tick, 1000);
+      sw.ego.value = "Stop";
+      sw.ego.removeEventListener("click", sw.start);
+      sw.ego.addEventListener("click", sw.stop);
+    },
+
+    stop: function () {
+      // stop() : stop the stopwatch
+
+      clearInterval(sw.timer);
+      sw.timer = null;
+      sw.ego.value = "Start";
+      sw.ego.removeEventListener("click", sw.stop);
+      sw.ego.addEventListener("click", sw.start);
+    },
+
+    reset: function () {
+      // reset() : reset the stopwatch
+
+      // Stop if running
+      if (sw.timer != null) { sw.stop(); }
+
+      // Reset time
+      sw.now = -1;
+      sw.tick();
+    }
+  };
+
+  window.addEventListener("load", sw.init);
+
+</script>
+
+
+
+
 
 
 </body>
+
 </html>

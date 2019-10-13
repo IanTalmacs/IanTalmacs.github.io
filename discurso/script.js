@@ -1,25 +1,42 @@
 
-let i = 1
-
-
-function addSubtema() {
-    let x = document.getElementById('subtema');
-    let clone = x.cloneNode(true);
-    clone.id = 'subtema' + ++i;
-    x.parentNode.appendChild(clone);
-    let ref = document.getElementById('add-subtema');
-    ref.before(clone);
-    clone.style.display = 'block';
-    clone.children[0].innerHTML = clone.id;
-}
-
+let i = 2
 let x 
 
+function addSubtema(elem) {
+    let x = document.getElementById(elem.id);
+    let y = document.getElementById('subtema' + x.id)
+    y.style.display = 'block';
+    if (y.style.display === 'block') {
+        x.style.display = 'none';
+    }else {
+        x.style.display === 'block';
+    }
+}
+
+function hide(elem) {
+    let x = document.getElementById(elem.parentNode.id);
+    x.style.display = 'none';
+    let y = x.id.substring(7);
+    document.getElementById(y).style.display = 'block'
+}
 
 function remove(elem) {
     x = document.getElementById(elem.parentNode.id);
     x.remove();
 }
+
+function save() {
+    const x = document.getElementById('edit');
+    const y = x.innerHTML;
+    localStorage.userEdits = y;
+}
+
+function checkEdits() {
+    if (localStorage.userEdits != null) 
+        document.getElementById('edit').innerHTML = localStorage.userEdits;
+    
+}
+
 
 
 

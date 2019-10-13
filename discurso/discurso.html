@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Esboço</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     <script src="script.js"></script>
-
-    <style>
-   
-    </style>
-
-
 </head>
-<h1 contenteditable="true" class="tema">TEMA DO DISCURSO</h1>
-<body>
 
-  <div class="subtema" id="subtema-original">
+<!--PUT onload="checkEdits()" as a property on <body> to save user edits-->
+<body >
+
+    <div id="edit">
+
+    <h1 contenteditable="true" class="tema">TEMA DO DISCURSO</h1>
+
+    <div class="subtema" id="subtema1">
       <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
       <ul contenteditable="true" class="pontos">
           <li contenteditable="true">Ponto 1</li>
@@ -28,30 +27,146 @@
           <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
           <li contenteditable="true">Ponto 4</li>
           <p contenteditable="true">Exemplo de texto</p>
+          <a class="plus" id="2" onclick="addSubtema(this)">+</a>
       </ul>
   </div> 
 
-  <div class="subtema" id="subtema">
-    <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
-    <ul contenteditable="true" class="pontos">
-        <li contenteditable="true">Ponto 1</li>
-        <p contenteditable="true">Exemplo de texto</p>
-        <li contenteditable="true">Ponto 2</li>
-        <p contenteditable="true">Exemplo de texto</p>
-        <li contenteditable="true" class="bi">Mateus 24:14</li>
-        <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
-        <li contenteditable="true">Ponto 4</li>
-        <p contenteditable="true">Exemplo de texto</p>
-    </ul>
-    <a class="delete" id="delete-first" onclick="remove(this)">X</a>
-  </div> 
+    <div class="subtema" id="subtema2">
+        <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+        <ul contenteditable="true" class="pontos">
+            <li contenteditable="true">Ponto 1</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true">Ponto 2</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true" class="bi">Mateus 24:14</li>
+            <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+            <li contenteditable="true">Ponto 4</li>
+            <p contenteditable="true">Exemplo de texto</p>
+        </ul>
+        <div class="plus" id="3" onclick="addSubtema(this)">+</div>
+        <a class="delete" id="delete-first" onclick="hide(this)">X</a>
+    </div> 
 
-    <a class="add-subtema" id="add-subtema" onclick="addSubtema()">ADICIONAR SUBTEMA</a>
+    <div class="subtema" id="subtema3" >
+        <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+        <ul contenteditable="true" class="pontos">
+            <li contenteditable="true">Ponto 1</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true">Ponto 2</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true" class="bi">Mateus 24:14</li>
+            <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+            <li contenteditable="true">Ponto 4</li>
+            <p contenteditable="true">Exemplo de texto</p>
+        </ul>
+        <div class="plus" id="4" onclick="addSubtema(this)">+</div>
+        <a class="delete" id="delete-first" onclick="hide(this)">X</a>
+    </div> 
+
+    <div class="subtema" id="subtema4">
+        <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+        <ul contenteditable="true" class="pontos">
+            <li contenteditable="true">Ponto 1</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true">Ponto 2</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true" class="bi">Mateus 24:14</li>
+            <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+            <li contenteditable="true">Ponto 4</li>
+            <p contenteditable="true">Exemplo de texto</p>
+        </ul>
+        <div class="plus" id="5" onclick="addSubtema(this)">+</div>
+        <a class="delete" id="delete-first" onclick="hide(this)">X</a>
+    </div>
+
+    <div class="subtema" id="subtema5">
+        <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+        <ul contenteditable="true" class="pontos">
+            <li contenteditable="true">Ponto 1</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true">Ponto 2</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true" class="bi">Mateus 24:14</li>
+            <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+            <li contenteditable="true">Ponto 4</li>
+            <p contenteditable="true">Exemplo de texto</p>
+        </ul>
+        <div class="plus" id="6" onclick="addSubtema(this)">+</div>
+        <a class="delete" id="delete-first" onclick="hide(this)">X</a>
+    </div>
+
+    <div class="subtema" id="subtema6">
+        <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+        <ul contenteditable="true" class="pontos">
+            <li contenteditable="true">Ponto 1</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true">Ponto 2</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true" class="bi">Mateus 24:14</li>
+            <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+            <li contenteditable="true">Ponto 4</li>
+            <p contenteditable="true">Exemplo de texto</p>
+        </ul>
+        <div class="plus" id="7" onclick="addSubtema(this)">+</div>
+        <a class="delete" id="delete-first" onclick="hide(this)">X</a>
+    </div>
+
+    <div class="subtema" id="subtema7">
+        <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+        <ul contenteditable="true" class="pontos">
+            <li contenteditable="true">Ponto 1</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true">Ponto 2</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true" class="bi">Mateus 24:14</li>
+            <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+            <li contenteditable="true">Ponto 4</li>
+            <p contenteditable="true">Exemplo de texto</p>
+        </ul>
+        <div class="plus" id="8" onclick="addSubtema(this)">+</div>
+        <a class="delete" id="delete-first" onclick="hide(this)">X</a>
+    </div>
+
+    <div class="subtema" id="subtema8">
+        <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+        <ul contenteditable="true" class="pontos">
+            <li contenteditable="true">Ponto 1</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true">Ponto 2</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true" class="bi">Mateus 24:14</li>
+            <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+            <li contenteditable="true">Ponto 4</li>
+            <p contenteditable="true">Exemplo de texto</p>
+        </ul>
+        <div class="plus" id="9" onclick="addSubtema(this)">+</div>
+        <a class="delete" id="delete-first" onclick="hide(this)">X</a>
+    </div>
+
+    <div class="subtema" id="subtema9">
+        <h3 class="subtema-titulo" contenteditable="true">SUBTEMA</h3>
+        <ul contenteditable="true" class="pontos">
+            <li contenteditable="true">Ponto 1</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true">Ponto 2</li>
+            <p contenteditable="true">Exemplo de texto</p>
+            <li contenteditable="true" class="bi">Mateus 24:14</li>
+            <p contenteditable="true">E estas boas novas serão pregadas em toda a terra habitada</p>
+            <li contenteditable="true">Ponto 4</li>
+            <p contenteditable="true">Exemplo de texto</p>
+        </ul>
+        <div class="plus" onclick="addSubtema(this)">+</div>
+        <a class="delete" id="delete-first" onclick="hide(this)">X</a>
+    </div>
+
+
+    </div>
+
+   <!--<a class="add-subtema" id="add-subtema" onclick="addSubtema()">ADICIONAR SUBTEMA</a> -->
+
+    <a class="add-subtema" id="save-button" onclick="save()">SALVAR</a>
 
     <div class="blank"></div>
-
-
-<!--CRONOMETRO CRONOMETRO CRONOMETRO-->
 
     <div id="stopwatch">
         <div id="sw-time">00:00:00</div>
