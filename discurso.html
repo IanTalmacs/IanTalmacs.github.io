@@ -199,7 +199,7 @@ li {
 
 <!--PUT onload="checkEdits()" as a property on <body> to save user edits-->
 
-<body onload="checkEdits()">
+<body >
 
   <div id="edit">
 
@@ -353,7 +353,7 @@ li {
 
   <!--<a class="add-subtema" id="add-subtema" onclick="addSubtema()">ADICIONAR SUBTEMA</a> -->
 
-  <a class="add-subtema" id="save-button" onclick="save()">SALVAR</a>
+  <a class="add-subtema" id="save-button" onclick="saveall()">SALVAR</a>
 
   <div class="blank"></div>
 
@@ -404,6 +404,17 @@ li {
 
   }
 
+  function saveall() {
+    var htmlContent = [document.documentElement.innerHTML];
+    var bl = new Blob(htmlContent, { type: "text/html" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(bl);
+    a.download = "your-download-name-here.html";
+    a.hidden = true;
+    document.body.appendChild(a);
+    a.innerHTML = "something random - nobody will see this, it doesn't matter what you put here";
+    a.click();
+  }
 
 
 
