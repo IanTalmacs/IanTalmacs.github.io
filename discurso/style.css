@@ -30,6 +30,10 @@ body {
     position: relative;
 }
 
+#subtema {
+    display: none;
+}
+
 .subtema-titulo {
     font-size: 1.35rem;
     padding: 10px;
@@ -124,7 +128,9 @@ li {
     max-width: 600px;
     display: block;
     color: black;
+    text-align: center;
 }
+
 
 .delete {
     position: absolute;
