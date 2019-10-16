@@ -135,10 +135,10 @@ li {
 
 #stopwatch {
     box-sizing: border-box;
-    height: 100px;
+    height: 50px;
     position: fixed;
     bottom: 0px;
-    background: #333;
+    background: rgb(13, 0, 70);
     padding: 0px;
     border-radius: 0px;
     width: 100%;
@@ -149,18 +149,20 @@ li {
     /*border-top: 3px red  solid;*/
   }
   #sw-time {
-    border:0;
+    width: 32%;
     padding:0;
     margin: 5px;
-    border: solid red;
+    margin-left: 10px;
+    border: solid yellow;
+    border-radius: 5px;
     font-size: 2em;
     font-weight: bold;
     text-align: center;
     color: white;
   }
   #sw-rst {
-    width: 42.5%;
-    height: 30%;
+    width: 45%;
+    height: 100%;
     box-sizing: padding-box;
     padding: 10px;
     display: inline-block;
@@ -169,14 +171,15 @@ li {
     font-weight: bold;
     text-align: center;
     position:absolute;
-    left: 5%;
+    right: 1%;
     line-height: 50%;
+    border: none;
 
   }
 
   #sw-go {
-    width: 42.5%;
-    height: 30%;
+    width: 45%;
+    height: 100%;
     box-sizing: padding-box;
     padding: 10px;
     display: inline-block;
@@ -185,10 +188,20 @@ li {
     font-weight: bold;
     text-align: center;
     position: absolute;
-    right: 5%;
+    left: 1%;
     line-height: 50%;
+    border: none;
   }
 
+#buttons {
+    box-sizing: border-box;
+    width: 60%;
+    height: 80%;
+    position: absolute;
+    right: 2%;
+    top: 5%;
+    margin-top: 3px;
+}
 
 
 </style>
@@ -197,7 +210,6 @@ li {
 
 </head>
 
-<!--PUT onload="checkEdits()" as a property on <body> to save user edits-->
 <body >
 
     <div id="edit">
@@ -350,16 +362,17 @@ li {
 
     </div>
 
-   <!--<a class="add-subtema" id="add-subtema" onclick="addSubtema()">ADICIONAR SUBTEMA</a> -->
 
     <a class="add-subtema" id="save-button" onclick="saveall()">SALVAR</a>
 
     <div class="blank"></div>
 
     <div id="stopwatch">
-        <div id="sw-time">00:00:00</div>
+        <div id="sw-time">00:00</div>
+        <div id="buttons">
         <input type="button" value="Reset" id="sw-rst" disabled/>
         <input type="button" value="Start" id="sw-go" disabled/>
+        </div>
     </div>
 
 
@@ -392,11 +405,6 @@ function remove(elem) {
     x.remove();
 }
 
-function save() {
-    const x = document.getElementById('edit');
-    const y = x.innerHTML;
-    localStorage.userEdits = y;
-}
 
 function checkEdits() {
     if (localStorage.userEdits != null)
@@ -456,7 +464,7 @@ var sw = {
         if (hours < 10) { hours = "0" + hours; }
         if (mins < 10) { mins = "0" + mins; }
         if (secs < 10) { secs = "0" + secs; }
-        sw.etime.innerHTML = hours + ":" + mins + ":" + secs;
+        sw.etime.innerHTML = /* hours + ":" + */mins + ":" + secs;
     },
 
     start: function () {
