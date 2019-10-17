@@ -315,13 +315,25 @@ input[type=number]::-webkit-outer-spin-button {
 
             pontosParou = document.getElementById(jogadorQueParou).children[0].value;
 
+            let somarTodos = []
+
+            for (let i = 0; i < numJogadores; i++) {
+                somarTodos.push(pontosRodada[i].pontos);
+            }
+
+            function somarPontos(total, num) {
+                return total + num;
+            }
+
+            somarTodos = somarTodos.reduce(somarPontos)
+
             if (pontosParou == pontosRodada[0].pontos && pontosParou != pontosRodada[1].pontos) {
                 pontosRodada[0].pontos = 0;
             } else {
                 for (let i = 0; i < numJogadores; i++) {
                     if (pontosRodada[i].nome == jogadorQueParou) {
                         parouErrado = pontosRodada[i];
-                        parouErrado.pontos = 2 * parouErrado.pontos;
+                        parouErrado.pontos = Number(somarTodos);
                     }
                 }
             };
