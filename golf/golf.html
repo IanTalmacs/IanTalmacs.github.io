@@ -272,7 +272,7 @@ input[type=number]::-webkit-outer-spin-button {
 
             for (let i = 0; i < numJogadores; i++) {
                 let x = document.createElement('LI');
-                let y = document.createTextNode(pontuacao[i].nome);
+                let y = document.createTextNode(jogadores[i]);
                 x.appendChild(y);
                 x.id = pontuacao[i].nome
                 let z = document.createElement("input");
