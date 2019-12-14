@@ -333,7 +333,7 @@ input[type=number]::-webkit-outer-spin-button {
                 for (let i = 0; i < numJogadores; i++) {
                     if (pontosRodada[i].nome == jogadorQueParou) {
                         parouErrado = pontosRodada[i];
-                        parouErrado.pontos = Number(somarTodos);
+                        parouErrado.pontos = Number(pontosParou*2);
                     }
                 }
             };
