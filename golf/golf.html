@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -169,7 +167,7 @@ input[type=number]::-webkit-outer-spin-button {
 
     </div>
 
-    <div class="container" id="baixar" onclick="save()">
+    <div class="container" id="baixar" onclick="save()" style="display: none;">
         <h4 style="text-align: center;">BAIXAR ESTA TABELA</h4>
     </div>
 
@@ -272,7 +270,7 @@ input[type=number]::-webkit-outer-spin-button {
 
             for (let i = 0; i < numJogadores; i++) {
                 let x = document.createElement('LI');
-                let y = document.createTextNode(jogadores[i]);
+                let y = document.createTextNode(pontuacao[i].nome);
                 x.appendChild(y);
                 x.id = pontuacao[i].nome
                 let z = document.createElement("input");
@@ -333,7 +331,7 @@ input[type=number]::-webkit-outer-spin-button {
                 for (let i = 0; i < numJogadores; i++) {
                     if (pontosRodada[i].nome == jogadorQueParou) {
                         parouErrado = pontosRodada[i];
-                        parouErrado.pontos = Number(pontosParou*2);
+                        parouErrado.pontos = Number(pontosParou + pontosParou);
                     }
                 }
             };
@@ -430,5 +428,5 @@ input[type=number]::-webkit-outer-spin-button {
                 hideBaixar.style.display = 'block';
             }
     </script>
+
 </body>
-</html>
