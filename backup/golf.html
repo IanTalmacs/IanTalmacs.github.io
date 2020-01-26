@@ -1,0 +1,432 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    * {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Rockwell, Arial, Helvetica, sans-serif;
+    background-color: #152468;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+.container {
+    background-color: rgb(255, 255, 255);
+    width: 94%;
+    box-sizing: border-box;
+    padding: 10px;
+    padding-bottom: 30px;
+    border: rgb(13, 0, 70) solid 3px;
+    border-radius: 7px;
+    margin: 10px auto;
+    max-width: 600px;
+}
+
+.num-jogadores {
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.15rem;
+    font-weight: bold;
+    width: 100px;
+    border: solid 2px navy;
+    border-radius: 5px;
+}
+
+.ok-button {
+    display: none;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 30px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: navy;
+    color: white;
+}
+
+.iniciar-rodada {
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 30px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: navy;
+    color: white;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.jogador {
+    text-align: center;
+    width: 150px;
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.15rem;
+    font-weight: bold;
+    border: solid 2px navy;
+    border-radius: 5px;
+}
+
+#modelo-jogador {
+    display: block;
+}
+
+#colocar-nomes {
+    display: none;
+}
+
+#primeira-rodada {
+    display: none;
+    background-color: rgb(255, 255, 255);
+    width: 94%;
+    box-sizing: border-box;
+    padding: 10px;
+    padding-bottom: 30px;
+    border: rgb(13, 0, 70) solid 3px;
+    border-radius: 7px;
+    margin: 10px auto;
+    max-width: 600px;
+}
+
+.colocar-pontos-rodada li {
+    box-sizing: border-box;
+    font-size: 1.35rem;
+    margin: 10px;
+}
+
+.colocar-pontos-rodada {
+    padding-left: 20px;
+}
+
+.jogador-pare {
+    box-sizing: border-box;
+    width: 30%;
+    margin: 10px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: navy;
+    color: white;
+}
+
+.ranking-title {
+    background-color: darkorange;
+    color: white;
+    height: 30px;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+#ranking-div {
+    display: none;
+}
+
+
+    </style>
+
+</head>
+<body>
+    <div class="container" id="home">
+        Quantos jogadores?
+        <input type="number" class="num-jogadores" id="num-jogadores"><br>
+        <input type="button" class="ok-button" value="ok" id="ok-button" onclick="multiplyPlayers(document.querySelector('.jogador'), numJogadores, true); hideHome(); showColocarNomes()">
+    </div>
+
+    <div class="container" id="colocar-nomes">
+        <input type="text" class="jogador" value="Nome">
+        <input type="button" class="iniciar-rodada" value="Começar o jogo!" onclick="guardarNomes(); showPrimeiraRodada()">
+    </div>
+
+    <div class="container" id="primeira-rodada">
+
+    </div>
+
+    <div class="container" id="ranking-div">
+
+        <div class="ranking-title" id="ranking-title">RANKING GERAL</div>
+        <br>
+        <div id="ranking-geral"></div>
+        
+        <input id="iniciar-outra-rodada" type="button" class="iniciar-rodada" value="INICIAR OUTRA RODADA!" onclick="showPrimeiraRodada(); limparRanking()">
+
+    </div>
+
+    <div class="container" id="baixar" onclick="save()" style="display: none;">
+        <h4 style="text-align: center;">BAIXAR ESTA TABELA</h4>
+    </div>
+
+    <script>
+    let numJogadores = 0
+        let jogadores = []
+        let rodada = 0
+
+        let pontuacao = [
+            {
+                nome: 'jogador',
+                pontos: '0',
+            },
+        ]
+
+        function totalizar() {
+            numJogadores = document.getElementById('num-jogadores').value;
+            if (numJogadores > 0) {
+                document.getElementById('ok-button').style.display = 'block';
+            }
+        }
+
+        document.addEventListener('click', totalizar)
+        document.addEventListener('keyup', totalizar)
+
+
+
+        function multiplyPlayers(node, count, deep) {
+            for (var i = 0, copy; i < count - 1; i++) {
+                copy = node.cloneNode(deep);
+                node.parentNode.insertBefore(copy, node);
+            }
+        }
+
+        function hideHome() {
+            document.getElementById('home').style.display = 'none';
+        }
+
+        function showColocarNomes() {
+            document.getElementById('colocar-nomes').style.display = 'block';
+        }
+
+        function guardarNomes() {
+            document.addEventListener('click', totalizar)
+            for (let i = 0; i < numJogadores; i++) {
+                jogadores.push(document.getElementById('colocar-nomes').children[i].value)
+            }
+            for (let z = 0; z < numJogadores - 1; z++) {
+                pontuacao.push({ nome: 'jogador', pontos: '0', });
+            }
+            for (let x = 0; x < numJogadores; x++) {
+                pontuacao[x].nome = jogadores[x];
+            }
+
+        }
+
+        function showPrimeiraRodada() {
+
+            document.getElementById('primeira-rodada').style.display = 'block';
+            document.getElementById('ranking-div').style.display = 'none';
+
+            let primeiraRodadaNode0 = document.createTextNode('Após jogar a rodada:');
+            let primeiraRodadaNode1 = document.createElement('br');
+            let primeiraRodadaNode2 = document.createElement('div');
+            primeiraRodadaNode2.id = 'jogador-pare';
+            let divJogadorPareNode0 = document.createTextNode('Quem pediu "pare?"');
+            let divJogadorPareNode1 = document.createElement('br');
+            let primeiraRodadaNode3 = document.createElement('br');
+            let primeiraRodadaNode4 = document.createElement('div');
+            primeiraRodadaNode4.id = 'pontos-primeira-rodada';
+            let divPontosPrimeiraRodadaNode0 = document.createTextNode('Colocar os pontos de todos:');
+            let divPontosPrimeiraRodadaNode1 = document.createElement('br');
+            let divPontosPrimeiraRodadaNode2 = document.createElement('ul');
+            divPontosPrimeiraRodadaNode2.id = 'colocar-pontos-rodada';
+            let primeiraRodadaNode5 = document.createElement('input');
+            primeiraRodadaNode5.type = 'button';
+            primeiraRodadaNode5.id = 'ver-ranking';
+            primeiraRodadaNode5.className = 'iniciar-rodada';
+            primeiraRodadaNode5.value = 'Ver Ranking';
+            primeiraRodadaNode5.setAttribute('onclick', 'verRanking(); limpar()');
+
+            document.body.childNodes[5].appendChild(primeiraRodadaNode0);
+            document.body.childNodes[5].appendChild(primeiraRodadaNode1);
+            document.body.childNodes[5].appendChild(primeiraRodadaNode2);
+            document.getElementById('jogador-pare').appendChild(divJogadorPareNode0);
+            document.getElementById('jogador-pare').appendChild(divJogadorPareNode1);
+            document.body.childNodes[5].appendChild(primeiraRodadaNode3);
+            document.body.childNodes[5].appendChild(primeiraRodadaNode4);
+            document.getElementById('pontos-primeira-rodada').appendChild(divPontosPrimeiraRodadaNode0);
+            document.getElementById('pontos-primeira-rodada').appendChild(divPontosPrimeiraRodadaNode1);
+            document.getElementById('pontos-primeira-rodada').appendChild(divPontosPrimeiraRodadaNode2);
+            document.body.childNodes[5].appendChild(primeiraRodadaNode5);
+
+
+
+            document.getElementById('primeira-rodada').style.display = 'block';
+            document.getElementById('colocar-nomes').style.display = 'none';
+            document.getElementById('pontos-primeira-rodada').style.display = 'none';
+            document.getElementById('ver-ranking').style.display = 'none';
+
+            for (let i = 0; i < numJogadores; i++) {
+                let x = document.createElement('LI');
+                let y = document.createTextNode(pontuacao[i].nome);
+                x.appendChild(y);
+                x.id = pontuacao[i].nome
+                let z = document.createElement("input");
+                z.className = 'jogador';
+                z.setAttribute('type', 'number');
+                x.appendChild(z);
+                document.getElementById('pontos-primeira-rodada').appendChild(x);
+            }
+
+            for (let z = 0; z < numJogadores; z++) {
+                let button = document.createElement('button');
+                button.className = 'jogador-pare';
+                button.setAttribute('onclick', 'jogadorPare(this)');
+                let y = document.createTextNode(jogadores[z]);
+                button.append(y);
+                document.getElementById('jogador-pare').append(button);
+            }
+        }
+
+        let jogadorQueParou = ""
+
+        function jogadorPare(elem) {
+            document.getElementById('jogador-pare').style.display = 'none';
+            document.getElementById('pontos-primeira-rodada').style.display = 'block';
+            document.getElementById('ver-ranking').style.display = 'block';
+            jogadorQueParou = elem.innerHTML;
+        }
+
+        let pontosParou
+        let pontosRodada = []
+        let parouErrado
+
+        function verRanking() {
+            for (let i = 3; i < Number(numJogadores) + 3; i++) {
+                let x = document.getElementById('pontos-primeira-rodada').childNodes[i].childNodes[1].value;
+                let y = document.getElementById('pontos-primeira-rodada').childNodes[i].id;
+                pontosRodada.push({ nome: y, pontos: Number(x), });
+                pontosRodada.sort(function (a, b) { return a.pontos - b.pontos });
+            }
+
+            pontosParou = document.getElementById(jogadorQueParou).children[0].value;
+
+            let somarTodos = []
+
+            for (let i = 0; i < numJogadores; i++) {
+                somarTodos.push(pontosRodada[i].pontos);
+            }
+
+            function somarPontos(total, num) {
+                return total + num;
+            }
+
+            somarTodos = somarTodos.reduce(somarPontos)
+
+            if (pontosParou == pontosRodada[0].pontos && pontosParou != pontosRodada[1].pontos) {
+                pontosRodada[0].pontos = 0;
+            } else {
+                for (let i = 0; i < numJogadores; i++) {
+                    if (pontosRodada[i].nome == jogadorQueParou) {
+                        parouErrado = pontosRodada[i];
+                        parouErrado.pontos = Number(pontosParou + pontosParou);
+                    }
+                }
+            };
+
+            for (i = 0; i < numJogadores; i++) {
+                pontosRodada[i].pontos = Number(pontosRodada[i].pontos);
+                pontuacao[i].pontos = Number(pontuacao[i].pontos);
+            }
+
+            pontosRodada.sort(function (a, b) { return a.pontos - b.pontos });
+            pontuacao.sort(function (a, b) { return a.pontos - b.pontos });
+
+
+            for (let i = 0; i < numJogadores; i++) {
+                for (let z = 0; z < numJogadores; z++) {
+                    if (pontosRodada[i].nome == pontuacao[z].nome) {
+                        pontuacao[z].pontos = pontuacao[z].pontos + pontosRodada[i].pontos;
+                    }
+                }
+            }
+
+            pontosRodada.sort(function (a, b) { return a.pontos - b.pontos });
+            pontuacao.sort(function (a, b) { return a.pontos - b.pontos });
+
+
+            rodada++
+            document.getElementById('primeira-rodada').style.display = 'none';
+            document.getElementById('ranking-div').style.display = 'block';
+
+            let pontosRodadaNode0 = document.createTextNode('Pontuação da rodada ' + rodada);
+            let pontosRodadaNode1 = document.createElement('br');
+            let pontosRodadaDiv = document.createElement('div');
+            pontosRodadaDiv.id = 'pontos-rodada-div';
+
+
+            document.getElementById('ranking-div').insertBefore(pontosRodadaNode0, document.getElementById('ranking-title'));
+
+            document.getElementById('ranking-div').insertBefore(pontosRodadaNode1, document.getElementById('ranking-title'));
+
+            document.getElementById('ranking-div').insertBefore(pontosRodadaDiv, document.getElementById('ranking-title'));
+
+            document.getElementById('ranking-div').insertBefore(pontosRodadaNode1, document.getElementById('ranking-title'));
+
+            for (let i = 0; i < numJogadores; i++) {
+                document.getElementById('pontos-rodada-div').appendChild(document.createTextNode(pontosRodada[i].nome + " = " + pontosRodada[i].pontos));
+                document.getElementById('pontos-rodada-div').appendChild(document.createElement('br'));
+            }
+
+            for (let i = 0; i < numJogadores; i++) {
+                document.getElementById('ranking-geral').appendChild(document.createElement('h3').appendChild(document.createTextNode(pontuacao[i].nome + " com " + pontuacao[i].pontos)));
+                document.getElementById('ranking-geral').appendChild(document.createElement('br'));
+            }
+
+
+
+            let proximaRodada = rodada + 1;
+            let proximaRodadaTexto = "Iniciar rodada " + proximaRodada;
+            document.getElementById('iniciar-outra-rodada').setAttribute('value', proximaRodadaTexto);
+
+        }
+
+
+        function limpar() {
+            while (document.getElementById('primeira-rodada').firstChild) {
+                document.getElementById('primeira-rodada').removeChild(document.getElementById('primeira-rodada').firstChild);
+            }
+        }
+
+        function limparRanking() {
+            for (let i = 0; i < 3; i++) {
+                document.getElementById('ranking-div').removeChild(document.getElementById('ranking-div').firstChild);
+            }
+
+            while (document.getElementById('ranking-geral').firstChild) {
+                document.getElementById('ranking-geral').removeChild(document.getElementById('ranking-geral').firstChild);
+            }
+
+            pontosRodada = [];
+
+        }
+
+        function save() {
+                var hideBaixar = document.getElementById('baixar');
+                hideBaixar.style.display = 'none';
+                var htmlContent = [document.documentElement.innerHTML];
+                var bl = new Blob(htmlContent, { type: "text/html" });
+                var a = document.createElement("a");
+                a.href = URL.createObjectURL(bl);
+                a.download = 'golf.html';
+                a.hidden = true;
+                document.body.appendChild(a);
+                a.innerHTML = "something random - nobody will see this, it doesn't matter what you put here";
+                a.click();
+                hideBaixar.style.display = 'block';
+            }
+    </script>
+
+</body>

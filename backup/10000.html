@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10000</title>
+    <style>
+    * {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Rockwell, Arial, Helvetica, sans-serif;
+    background-color: #152468;
+}
+
+.container {
+    display: block;
+    background-color: rgb(255, 255, 255);
+    width: 94%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: rgb(13, 0, 70) solid 3px;
+    border-radius: 7px;
+    margin: 10px auto;
+    max-width: 600px;
+    position: relative;
+}
+
+h3 {
+    padding: 7px;
+}
+
+.jogador {
+    text-align: center;
+    width: 150px;
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.15rem;
+    font-weight: bold;
+    border: solid 2px navy;
+    border-radius: 5px;
+}
+
+.add-pontos {
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.15rem;
+    font-weight: bold;
+    width: 50px;
+    border: solid 2px navy;
+    border-radius: 5px;
+}
+
+.add-button {
+    box-sizing: border-box;
+    width: 45px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: navy;
+    color: white;
+    position: relative;
+    bottom: 2px;
+}
+
+#historico {
+    text-align: center;
+    font-size: 1.5rem;
+    box-sizing: border-box;
+    width: 80%;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: navy;
+    color: white;
+    margin: 10px auto;
+}
+
+.ranking-title {
+    background-color: darkorange;
+    color: white;
+    height: 30px;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.historico {
+    border-bottom: solid 1px navy;
+    border-top: none;
+    padding: 3px;
+}
+
+.x {
+    border: none;
+    background-color: red;
+    color: white;
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    position: relative;
+    bottom: 3px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <input type="text" class="jogador" id="1" value="Jogador">
+        <input type="number" class="add-pontos" id="pontos1">
+        <input type="button" class="add-button" value="ADD" onclick="add1(); historico()"><br>
+        <h6 id="historico1" class="historico"></h6>
+
+        <input type="text" class="jogador" id="2" value="Jogador">
+        <input type="number" class="add-pontos" id="pontos2">
+        <input type="button" class="add-button" value="ADD" onclick="add2(); historico()"><br>
+        <h6 id="historico2" class="historico"></h6>
+        
+        <input type="texto" class="jogador" id="3" value="Jogador">
+        <input type="number" class="add-pontos" id="pontos3">
+        <input type="button" class="add-button" value="ADD" onclick="add3(); historico()"><br>
+        <h6 id="historico3" class="historico"></h6>
+
+        <input type="text" class="jogador" id="4" value="Jogador">
+        <input type="number" class="add-pontos" id="pontos4">
+        <input type="button" class="add-button" value="ADD" onclick="add4(); historico()"><br>
+        <h6 id="historico4" class="historico"></h6>
+
+        <input type="text" class="jogador" id="5" value="Jogador">
+        <input type="number" class="add-pontos" id="pontos5">
+        <input type="button" class="add-button" value="ADD" onclick="add5(); historico()"><br>
+        <h6 id="historico5" class="historico"></h6>
+
+        <input type="text" class="jogador" id="6" value="Jogador">
+        <input type="number" class="add-pontos" id="pontos6">
+        <input type="button" class="add-button" value="ADD" onclick="add6(); historico()"><br>
+        <h6 id="historico6" class="historico"></h6>
+
+    </div>
+
+    <div class="container">
+
+        <div class="ranking-title">RANKING</div>
+        <h3>1º <span id="primeiro-lugar"></span></h3>
+        <h3>2º <span id="segundo-lugar"></span></h3>
+        <h3>3º <span id="terceiro-lugar"></span></h3>
+        <h3>4º <span id="quarto-lugar"></span></h3>
+        <h3>5º <span id="quinto-lugar"></span></h3>
+        <h3>6º <span id="sexto-lugar"></span></h3>
+
+    </div>
+
+    <div class="container" id="baixar" onclick="save()">
+        <h4 style="text-align: center;">BAIXAR ESTA TABELA</h4>
+    </div>
+
+
+    <script>
+/*
+
+function resizeInput(elem) {
+let input = document.getElementById(elem.id);
+input.style.width = input.value.length + "ch";
+input.style.minWidth = 50 + 'px';
+}*/
+
+let pontos1 = [0]
+let pontos2 = [0]
+let pontos3 = [0]
+let pontos4 = [0]
+let pontos5 = [0]
+let pontos6 = [0]
+
+function somarPontos(total, num) {
+    return total + num;
+}
+
+function historico() {
+    document.getElementById('historico1').innerHTML = pontos1;
+    document.getElementById('historico2').innerHTML = pontos2;
+    document.getElementById('historico3').innerHTML = pontos3;
+    document.getElementById('historico4').innerHTML = pontos4;
+    document.getElementById('historico5').innerHTML = pontos5;
+    document.getElementById('historico6').innerHTML = pontos6;
+}
+
+function add1() {
+    let x = document.getElementById('pontos1').value;
+    var y = Number(x);
+    pontos1.push(y);
+    document.getElementById('pontos1').value = "";
+}
+
+function add2() {
+    let x = document.getElementById('pontos2').value;
+    var y = Number(x);
+    pontos2.push(y);
+    document.getElementById('pontos2').value = "";
+}
+
+function add3() {
+    let x = document.getElementById('pontos3').value;
+    var y = Number(x);
+    pontos3.push(y);
+    document.getElementById('pontos3').value = "";
+}
+
+function add4() {
+    let x = document.getElementById('pontos4').value;
+    var y = Number(x);
+    pontos4.push(y);
+    document.getElementById('pontos4').value = "";
+}
+
+function add5() {
+    let x = document.getElementById('pontos5').value;
+    var y = Number(x);
+    pontos5.push(y);
+    document.getElementById('pontos5').value = "";
+}
+
+function add6() {
+    let x = document.getElementById('pontos6').value;
+    var y = Number(x);
+    pontos6.push(y);
+    document.getElementById('pontos6').value = "";
+}
+
+
+
+const players = [
+    {
+        name: "",
+        pontos: "",
+    },
+
+    {
+        name: "",
+        pontos: "",
+    },
+
+    {
+        name: "",
+        pontos: "",
+    },
+
+    {
+        name: "",
+        pontos: "",
+    },
+
+    {
+        name: "",
+        pontos: "",
+    },
+
+    {
+        name: "",
+        pontos: "",
+    },
+]
+
+
+function totalizar() {
+    players[0].pontos = pontos1.reduce(somarPontos);
+    players[1].pontos = pontos2.reduce(somarPontos);
+    players[2].pontos = pontos3.reduce(somarPontos);
+    players[3].pontos = pontos4.reduce(somarPontos);
+    players[4].pontos = pontos5.reduce(somarPontos);
+    players[5].pontos = pontos6.reduce(somarPontos);
+
+    players[0].name = document.getElementById('1').value
+    players[1].name = document.getElementById('2').value
+    players[2].name = document.getElementById('3').value
+    players[3].name = document.getElementById('4').value
+    players[4].name = document.getElementById('5').value
+    players[5].name = document.getElementById('6').value
+
+    players.sort(function (a, b) { return b.pontos - a.pontos });
+
+    document.getElementById('primeiro-lugar').innerHTML = `${players[0].name} ${players[0].pontos}`;
+    document.getElementById('segundo-lugar').innerHTML = `${players[1].name} ${players[1].pontos}`;
+    document.getElementById('terceiro-lugar').innerHTML = `${players[2].name} ${players[2].pontos}`;
+    document.getElementById('quarto-lugar').innerHTML = `${players[3].name} ${players[3].pontos}`;
+    document.getElementById('quinto-lugar').innerHTML = `${players[4].name} ${players[4].pontos}`;
+    document.getElementById('sexto-lugar').innerHTML = `${players[5].name} ${players[5].pontos}`;
+
+}
+
+document.addEventListener('click', totalizar)
+document.addEventListener('keyup', totalizar)
+
+function save() {
+    var hideBaixar = document.getElementById('baixar');
+    hideBaixar.style.display = 'none';
+    var htmlContent = [document.documentElement.innerHTML];
+    var bl = new Blob(htmlContent, { type: "text/html" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(bl);
+    a.download = '10.000.html';
+    a.hidden = true;
+    document.body.appendChild(a);
+    a.innerHTML = "something random - nobody will see this, it doesn't matter what you put here";
+    a.click();
+    hideBaixar.style.display = 'block';
+}
+
+    </script>
+</body>
+</html>
