@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <div id="tela-inicial">
+        <h1>PALAVRA SECRETA!</h1>
+        <h3>Quantas equipes?</h3>
+        <input id="quantos-jogadores" class="input-number" type="number">
+        <input id="ok-inicio" class="button" type="button" value="ok">
+    </div>
+
+    <div id="tela-colocar-nomes" style="display: none;">
+        <h3>Nomear os times</h3>
+        <input id="nome-time" type="text" class="input-text" style="display:none">
+        <input type="button" class="button" id="iniciar-jogo" value="iniciar">
+    </div>
+
+    <div id="escolher-categoria" style="display: none;">
+        <h3>Escolha uma categoria</h3>
+        <h3 class="categoria" id="categoria-animais">Animais</h3>
+        <h3 class="categoria" id="categoria-tv-cinema">TV e Cinema</h3>
+        <h3 class="categoria" id="categoria-objetos">Objetos</h3>
+        <h3 class="categoria" id="categoria-lugares">Lugares</h3>
+        <h3 class="categoria" id="categoria-pessoas"> Pessoas</h3>
+        <h3 class="categoria" id="categoria-esportes">Esportes e Jogos</h3>
+        <h3 class="categoria" id="categoria-profissao">Profissão</h3>
+        <h3 class="categoria" id="categoria-alimentos">Alimentos</h3>
+        <h3 class="categoria" id="categoria-personagens">Personagens</h3>
+        <h3 class="categoria" id="categoria-biblico">Bíblico</h3>
+    </div>
+
+    <div id="tela-preparar" style="display: none;">
+        <h3>Preparar equipe:</h3>
+        <h1 id="equipe-rodada"></h1>
+        <input type="button" class="button" id="iniciar-rodada-animais" value="Começar">
+        <input type="button" class="button" id="iniciar-rodada-tv-cinema" value="Começar">
+        <input type="button" class="button" id="iniciar-rodada-objetos" value="Começar">
+        <input type="button" class="button" id="iniciar-rodada-lugares" value="Começar">
+        <input type="button" class="button" id="iniciar-rodada-pessoas" value="Começar">
+        <input type="button" class="button" id="iniciar-rodada-esportes" value="Começar">
+        <input type="button" class="button" id="iniciar-rodada-profissao" value="Começar">
+        <input type="button" class="button" id="iniciar-rodada-alimentos" value="Começar">
+        <input type="button" class="button" id="iniciar-rodada-personagens" value="Começar">
+        <input type="button" class="button" id="iniciar-rodada-biblico" value="Começar">
+    </div>
+
+    <div id="tela-contagem-preparar" style="display: none;">
+        <h3 id="contagem-preparar">3</h3>
+    </div>
+
+    <div id="rodada" style="display: none;">
+        <h3 id="tempo-rodada">75</h3>
+        <h3 id="palavra-secreta"></h3>
+        <div id="botoes-certo-pular">
+            <h3 id="botao-certo">CERTO</h3>
+            <h3 id="botao-pular">PULAR</h3>
+        </div>
+    </div>
+
+    <div id="revisar-palavras" style="display: none;">
+        <h3>Tempo acabou!</h3>
+        <h3 id="item-revisar-palavras"></h3>
+        <input id="proximo-time" class="button" type="button" value="Próximo time">
+        <input id="proxima-categoria" class="button" type="button" value="Outra Categoria">
+        <br><br>
+        <input id="finalizar" class="button" type="button" value="finalizar">
+    </div>
+
+    <div id="ranking">
+        <h3 id="item-ranking" style="display: none; color: white;"></h3>
+    </div>
+
+    <div id="pulando" style="display: none;"><h2>pulando...</h2></div>
+    <script src="script.js"></script>
+</body>
+</html>
